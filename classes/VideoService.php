@@ -312,6 +312,14 @@ class VideoService {
 			'id_regex'		=> array(
 				'#^([a-zA-Z0-9]+)$#is'
 			)
+		),
+		'pandora' => array(
+			'embed'			=> '<iframe src="//%1$s#embed?matchRatio=true" width="%2$d" height="360" frameborder="0" allowfullscreen></iframe>',
+			'default_width'	=> 640,
+			'default_ratio' => 1, //(1 / 1)
+			'https_enabled'	=> true,
+
+			
 		)
 	);
 
