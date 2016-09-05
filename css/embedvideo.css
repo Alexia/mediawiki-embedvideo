@@ -1,3 +1,7 @@
+div.embedvideo {
+	overflow: hidden;
+}
+
 div.tcenter.embedvideo,
 div.embedvideo.ev_center  {
 	text-align: center;
