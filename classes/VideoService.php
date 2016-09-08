@@ -118,6 +118,7 @@ class VideoService {
 			'https_enabled'	=> true,
 			'url_regex'		=> [
 				'#disclose.tv/embed/([\d]+)/([\w-]+)#is',
+				'#disclose.tv/action/viewvideo/([\d]+)/([\w-]+)/#is'
 			],
 			'id_regex'		=> [
 				'#^([\d]+)$#is'
@@ -261,11 +262,12 @@ class VideoService {
 			]
 		],
 		'tudou' => [
-			'embed'			=> '<iframe src="http://www.tudou.com/programs/view/html5embed.action?code=%1$s&autoPlay=false&playType=AUTO" allowfullscreen="true" width="%2$d" height="%3$d" frameborder="0"></iframe>',
+			'embed'			=> '<iframe src="//www.tudou.com/programs/view/html5embed.action?code=%1$s&autoPlay=false&playType=AUTO" allowfullscreen="true" width="%2$d" height="%3$d" frameborder="0"></iframe>',
 			'default_width'	=> 640,
 			'default_ratio'	=> 1.6,
 			'https_enabled'	=> false,
 			'url_regex'		=> [
+				'#tudou.com/programs/view/([\d\w-]+)/?#is',
 				'#tudou.com/listplay/([\d\w-]+)/([\d\w-]+).html#is',
 				'#tudou.com/listplay/([\d\w-]+).html#is'
 			],
@@ -274,12 +276,13 @@ class VideoService {
 			]
 		],
 		'tubitv' => [
-			'embed'			=> '<iframe src="http://tubitv.com/embed/%1$s" width="%2$d" height="%3$d" frameborder="0" allowfullscreen></iframe>',
+			'embed'			=> '<iframe src="//tubitv.com/embed/%1$s" width="%2$d" height="%3$d" frameborder="0" allowfullscreen></iframe>',
 			'default_width'	=> 640,
 			'default_ratio'	=> 1.77777777777778, // (640 / 360)
 			'https_enabled'	=> false,
 			'url_regex'		=> [
-				'#tubitv.com/embed/([\d]+)/([\w-]+)#is',
+				'#tubitv.com/video/([\d]+)/([\w-]+)#is',
+				'#tubitv.com/embed/([\d]+)/([\w-]+)#is'
 			],
 			'id_regex'		=> [
 				'#^([\d]+)$#is'
