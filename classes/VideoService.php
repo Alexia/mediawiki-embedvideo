@@ -352,6 +352,18 @@ class VideoService {
 				'#^([a-zA-Z0-9]+)$#is'
 			]
 		],
+		'vk' => [
+             'embed'                 => '%1$s',
+              'https_enabled' => true,
+              'url_regex'             => [
+                '#(http?://vk.com/video-\d+_\d+)#is',
+                '#http?://vk.com/video-(\d+_\d+)#is',
+              ],
+              'id_regex'              => [
+                '#^([\d\w-]+)$#is'
+              ],
+              'servicename' => 'vk'
+         ],
 		'yahoo' => [
 			'embed'			=> '<iframe src="//screen.yahoo.com/%1$s.html?format=embed" width="%2$d" height="%3$d" scrolling="no" frameborder="0" allowfullscreen="true" allowtransparency="true"></iframe>',
 			'default_width'	=> 640,
@@ -443,6 +455,25 @@ class VideoService {
 		'youku.com'					=> 'youku'
 	];
 
+
+private function vkVideo()
+{
+    if ($this->service['servicename'] !== 'vk') return;
+
+    $sem=[];
+    preg_match('/.*?(\d+)_(\d+)/', $this->getVideoID(), $sem);
+
+    $ch = curl_init('https://vk.com/video-'.$sem[1].'_'.$sem[2]);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_exec($ch);
+    $cont = curl_multi_getcontent($ch);
+    curl_close($ch);
+    $vkurl=preg_replace("/^.*?get_swf&oid=-(\d+)&vid=(\d+)&embed_hash=([\d\w]+)\".*/sim",
+                        '<iframe src="//vk.com/video_ext.php?oid=-$1&id=$2&hash=$3&hd=2" width="%2$d" height="%3$d"  frameborder="0"></iframe>',
+                        $cont);
+                        
+    $this->service['embed']=$vkurl;
+}
 
 	/**
 	 * This object instance's service information.
@@ -551,7 +582,7 @@ class VideoService {
 		if ( $this->getVideoID() === false || $this->getWidth() === false || $this->getHeight() === false ) {
 			return false;
 		}
-
+		$this->vkVideo();
 		$html = false;
 		if ( isset( $this->service['embed'] ) ) {
 			// Embed can be generated locally instead of calling out to the service to get it.

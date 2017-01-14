@@ -398,6 +398,11 @@ As of version 2.x, EmbedVideo supports embedding video content from the followin
 | <nowiki>h2B7WMtuX2t</nowiki>
 | <nowiki>https://vine.co/v/h2B7WMtuX2t</nowiki>
 |-
+! [https://vk.com VK]
+| colspan="2"|<tt>vk</tt>
+| <nowiki>12014268_456239025</nowiki>
+| <nowiki>https://vk.com/video-12014268_456239025</nowiki>
+|-
 ! [http://screen.yahoo.com/ Yahoo Screen]
 | colspan="2"|<tt>yahoo</tt>
 | <nowiki>katy-perry-dances-sharks-2015-024409668</nowiki>
