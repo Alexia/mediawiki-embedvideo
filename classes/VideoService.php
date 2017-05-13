@@ -87,13 +87,27 @@ class VideoService {
 			],
 			'oembed'		=> 'http://blip.tv/oembed/?url=%1$s&width=%2$d&maxwidth=%2$d'
 		],
+		'bilibili' => [
+			'embed' => '<embed height="%3$d" width="%2$d" quality="high" allowfullscreen="true" type="application/x-shockwave-flash" src="//static.hdslb.com/miniloader.swf" flashvars="aid=%1$s&page=%4$d" pluginspage="//www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash"></embed>',
+			'default_width' => 640,
+			'default_ratio' => 1.42222222222, // (640 / 450)
+			'https_enabled' => true,
+			'url_regex' => [
+				'#bilibili\.com/video/av(\d+)/?(\s*)$#is'
+				'#bilibili\.com/video/av(\d+)/index_(\d+)\.html#is',
+			],
+			'id_regex' => [
+				'#^(?:av_)?(\d+)/?(\s*)$#is',
+				'#^(?:av_)?(\d+)/(?:index_)?(\d+)(?:\.html)?$#is'
+			]
+		],
 		'bing' => [
 			'embed'			=> '<iframe src="//hub.video.msn.com/embed/%1$s" width="%2$d" height="%3$d" frameborder="0" scrolling="no" noscroll allowfullscreen="true"></iframe>',
 			'default_width'	=> 640,
 			'default_ratio'	=> 1.77777777777778, // (16 / 9)
 			'https_enabled'	=> true,
 			'url_regex'		=> [
-				'#bing.com/videos/watch/video/[\w\d\-]+?/([a-zA-Z0-9]+)(?:/\S+?)?#is'
+				'#bing\.com/videos/watch/video/[\w\d\-]+?/([a-zA-Z0-9]+)(?:/\S+?)?#is'
 			],
 			'id_regex'		=> [
 				'#^([a-zA-Z0-9]+)$#is'
@@ -158,7 +172,7 @@ class VideoService {
 			'default_ratio'	=> 1.77777777777778, // (16 / 9)
 			'https_enabled'	=> false,
 			'url_regex'		=> [
-				'#hitbox.tv/([\d\w]+)(?:/\S+?)?#is'
+				'#hitbox\.tv/([\d\w]+)(?:/\S+?)?#is'
 			],
 			'id_regex'		=> [
 				'#^([\d\w]+)$#is'
@@ -194,7 +208,7 @@ class VideoService {
 			'default_ratio' => 1.77777777777778, //(16 / 9),
 			'https_enabled' => true,
 			'url_regex' => [
-				'#conferences/.*?([\d\w_-]+)(?:/oembed)?.html$#is'
+				'#conferences/.*?([\d\w_-]+)(?:/oembed)?\.html$#is'
 			],
 			'id_regex'    => [
 				'#^([\d\w_-]+)$#is'
@@ -275,7 +289,7 @@ class VideoService {
 			'default_ratio'	=> 1.77777777777778, // (640 / 360)
 			'https_enabled'	=> true,
 			'url_regex'		=> [
-				'#tubitv.com/(?:video|embed)/([\d]+)(/[\w-]+)?$#is',
+				'#tubitv\.com/(?:video|embed)/([\d]+)(/[\w-]+)?$#is',
 			],
 			'id_regex'		=> [
 				'#^([\d]+)$#is'
@@ -287,8 +301,8 @@ class VideoService {
 			'default_ratio'	=> 1.6,
 			'https_enabled'	=> false,
 			'url_regex'		=> [
-				'#tudou.com/listplay/([\d\w-]+)/([\d\w-]+).html#is',
-				'#tudou.com/listplay/([\d\w-]+).html#is'
+				'#tudou\.com/listplay/([\d\w-]+)/([\d\w-]+)\.html#is',
+				'#tudou\.com/listplay/([\d\w-]+)\.html#is'
 			],
 			'id_regex'		=> [
 				'#^([\d\w-]+)$#is'
@@ -408,7 +422,7 @@ class VideoService {
 			'default_ratio'	=> 1.6,
 			'https_enabled'	=> false,
 			'url_regex'		=> [
-				'#id_([\d\w-]+).html#is',
+				'#id_([\d\w-]+)\.html#is',
 			],
 			'id_regex'		=> [
 				'#^(?:id_)?([\d\w-]+)$#is'
@@ -424,6 +438,7 @@ class VideoService {
 		'archive.org'				=> 'archiveorg',
 		'embed.bambuser.com'		=> ['bambuser', 'bambuser_channel'],
 		'beam.pro' 					=> 'beam',
+		'bilibili'					=> 'bilibili',
 		'blip.tv'					=> 'blip',
 		'bing.com'					=> 'bing',
 		'collegehumor.com'			=> 'collegehumor',
