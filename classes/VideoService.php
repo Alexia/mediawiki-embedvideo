@@ -88,15 +88,15 @@ class VideoService {
 			'oembed'		=> 'http://blip.tv/oembed/?url=%1$s&width=%2$d&maxwidth=%2$d'
 		],
 		'bilibili' => [
-			'embed' => '<embed height="%3$d" width="%2$d" quality="high" allowfullscreen="true" type="application/x-shockwave-flash" src="//static.hdslb.com/miniloader.swf" flashvars="aid=%1$s&page=%4$d" pluginspage="//www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash"></embed>',
+			'embed'         => '<embed height="%3$d" width="%2$d" quality="high" allowfullscreen="true" type="application/x-shockwave-flash" src="//static.hdslb.com/miniloader.swf" flashvars="aid=%1$s&page=%4$d" pluginspage="//www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash"></embed>',
 			'default_width' => 640,
 			'default_ratio' => 1.42222222222, // (640 / 450)
 			'https_enabled' => true,
-			'url_regex' => [
+			'url_regex'     => [
 				'#bilibili\.com/video/av(\d+)/?(\s*)$#is'
 				'#bilibili\.com/video/av(\d+)/index_(\d+)\.html#is',
 			],
-			'id_regex' => [
+			'id_regex'      => [
 				'#^(?:av_)?(\d+)/?(\s*)$#is',
 				'#^(?:av_)?(\d+)/(?:index_)?(\d+)(?:\.html)?$#is'
 			]
