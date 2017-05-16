@@ -59,6 +59,7 @@
 			"styles": [
 				"css/embedvideo.css"
 			],
+			"position": "top",
 			"targets": [
 				"desktop",
 				"mobile"
