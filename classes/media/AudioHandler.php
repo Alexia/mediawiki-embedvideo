@@ -21,8 +21,9 @@ class AudioHandler extends \MediaHandler {
 		return [
 			'img_width'	=> 'width',
 			'ev_start'	=> 'start',
-			'ev_end'	=> 'end',
-			'autoplay'	=> 'autoplay',
+                        'ev_end'	=> 'end',
+                        'autoplay'      => 'autoplay',
+                        'loop'          => 'loop'
 		];
 	}
 
@@ -45,7 +46,8 @@ class AudioHandler extends \MediaHandler {
 				return false;
 			}
 			return true;
-		}
+                } 
+
 		return false;
 	}
 
@@ -126,6 +128,8 @@ class AudioHandler extends \MediaHandler {
 				unset($parameters['end']);
 			}
 		}
+
+          
 
 		$parameters['page'] = 1;
 

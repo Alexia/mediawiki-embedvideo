@@ -21,18 +21,20 @@ class VideoTransformOutput extends \MediaTransformOutput {
 	 * @param	array	Parameters for constructing HTML.
 	 * @return	void
 	 */
-	private $autoplay = false;
-	
-	public function __construct($file, $parameters) {
+        private $autoplay = false;
+        private $loop = false;
+
+        public function __construct($file, $parameters) {
 		$this->file = $file;
 		$this->parameters = $parameters;
-		$this->width = (isset($parameters['width']) ? $parameters['width'] : null);
-		$this->height = (isset($parameters['height']) ? $parameters['height'] : null);
+		$this->width = $parameters['width'];
+		$this->height = $parameters['height'];
 		$this->path = $file->getLocalRefPath();
 		$this->lang = false;
 		$this->page = $parameters['page'];
-		$this->url = $file->getFullUrl();
-		$this->autoplay=$parameters['autoplay'];
+                $this->url = $file->getFullUrl();
+                $this->autoplay=isset($parameters['autoplay']);
+                $this->loop=isset($parameters['loop']);
 	}
 
 	/**
@@ -77,25 +79,21 @@ class VideoTransformOutput extends \MediaTransformOutput {
 			$class = $options['img-class'];
 		}
 
-		if (!isset($parameters['start'])) {
-			$parameters['start'] = null;
-		}
-		if (!isset($parameters['end'])) {
-			$parameters['end'] = null;
-		}
-
 		$inOut = false;
 		if ($parameters['start'] !== $parameters['end']) {
-			if (isset($parameters['start']) && $parameters['start'] !== false) {
+			if (isset($parameters['start']) && $parameters['starte'] !== false) {
 				$inOut[] = $parameters['start'];
 			}
 
 			if (isset($parameters['end']) && $parameters['end'] !== false) {
 				$inOut[] = $parameters['end'];
 			}
-		}
-	
-		$html = "<video src='{$this->url}".($inOut !== false ? '#t='.implode(',', $inOut) : '')."' width='{$this->getWidth()}' height='{$this->getHeight()}'".(!empty($class) ? " class='{$class}'" : "").(!empty($style) ? " style='".implode(" ", $style)."'" : "").($this->autoplay ? "autoplay" : "")." controls><a href='{$parameters['descriptionUrl']}'>{$parameters['descriptionUrl']}</a></video>";
+                }
+
+		
+
+        $html = "<video src='{$this->url}".($inOut !== false ? '#t='.implode(',', $inOut) : '')."' width='{$this->getWidth()}' height='{$this->getHeight()}'".(!empty($class) ? " class='{$class}'" : "").(!empty($style) ? " style='".implode(" ", $style)."'" : "").($this->autoplay ? "autoplay" : "").($this->loop ? " loop" : "")." controls><a href='{$parameters['descriptionUrl']}'>{$parameters['descriptionUrl']}</a></video>";
+
 
 		return $html;
 	}
