@@ -380,6 +380,7 @@ class VideoService {
 			'https_enabled'	=> true,
 			'url_regex'		=> [
 				'#v=([\d\w-]+)(?:&\S+?)?#is',
+				'#youtube(?:-nocookie)?\.com/embed/([\d\w-]+)#is',
 				'#youtu\.be/([\d\w-]+)#is'
 			],
 			'id_regex'		=> [
