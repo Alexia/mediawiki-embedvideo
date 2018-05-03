@@ -374,7 +374,7 @@ class VideoService {
 			]
 		],
 		'youtube' => [
-			'embed'			=> '<iframe src="//www.youtube.com/embed/%1$s?%4$s" width="%2$d" height="%3$d" frameborder="0" allowfullscreen="true"></iframe>',
+			'embed'			=> '<iframe src="//www.youtube-nocookie.com/embed/%1$s?%4$s" width="%2$d" height="%3$d" frameborder="0" allowfullscreen="true"></iframe>',
 			'default_width'	=> 640,
 			'default_ratio'	=> 1.77777777777778, // (16 / 9)
 			'https_enabled'	=> true,
